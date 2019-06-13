@@ -14,20 +14,29 @@ select ll_from from langlinks where ll_title=?
         return id2title[str(idx).encode()][0].decode('utf-8')
     except TypeError:
         return None
+    except KeyError:
+        return None
 
 
 def mention2encands(mention,
                     mention_stat,
                     id2title,
                     llfile):
-    cands = json.loads(mention_stat[mention][0])
-    out = []
-    for cand, count in cands.items():
-        target = cand2en(cand, id2title, llfile)
-        if target is not None:
-            out.append((target, count))
-    return out
-
+    try:
+        cands = json.loads(mention_stat[mention][0])
+        out = []
+        total = 0
+        for cand, count in cands.items():
+            target = cand2en(cand, id2title, llfile)
+            if target is not None:
+                out.append((target, count))
+                total += count
+        for i, (target, count) in enumerate(out):
+            out[i] = (target, float(count)/float(total))
+        return out
+    except KeyError:
+        return None
+    
 
 if __name__ == "__main__":
     import sys
