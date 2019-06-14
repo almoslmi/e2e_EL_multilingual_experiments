@@ -2,6 +2,15 @@ import simplejson as json
 import numpy as np
 import pickle
 from tqdm import tqdm
+import nltk
+
+import sys
+sys.path.append("../modules/")
+
+import candidate_generator as cg
+import entvec_encoder as eenc
+import laserencoder as lenc
+from predictor2 import feature
 
 
 def generate(indices, sentvecs, labels, entvecs):
@@ -18,6 +27,24 @@ def generate(indices, sentvecs, labels, entvecs):
                 y.append(lab[1])
             if y:
                 yield [np.array(X1), np.array(X2)], np.array(y)
+
+
+def generate_wiki(wikipath, trie, kv, enc):
+    with open(wikipath) as f:
+        for line in f:
+            try:
+                sent, entities = line.strip().split("\t")
+            except ValueError:
+                continue
+            if not sent.replace(" ", ""):
+                continue
+            entities = {x: True for x in entities.split(":::")}
+            words = nltk.word_tokenize(sent)
+            X_list, cand_list, gram_list = feature(words, trie, kv, enc)
+            for X, cands in zip(X_list, cand_list):
+                y = [cand in entities for cand in cands]
+                if y:
+                    yield X, np.array(y)
 
 
 def generate_test(indices, sentvecs, labels, entvecs):
@@ -84,7 +111,7 @@ def generate2_test(indices, sentvecs, labels, entvecs, gramvecs):
             np.array(X3),
             np.array(X4)], np.array(y)
 
-                
+
 def generate3(indices, sentvecs, labels, entvecs, linkprobs):
     while True:
         for index in indices:
@@ -124,6 +151,13 @@ def load_data2(svecfile="./training_data/sents_encoded.npy",
     with open(g2vecfile, "rb") as f:
         gramvecs = pickle.load(f)
     return sentvecs, labels, entvecs, gramvecs
+
+
+def load_data3():
+    trie = cg.load("../data/mention_stat.marisa")
+    kv = eenc.load("../entity_vector/enwiki_20180420_100d.bin")
+    enc = lenc.Encoder()
+    return trie, kv, enc
 
 
 def gen_indices(num_sents):
