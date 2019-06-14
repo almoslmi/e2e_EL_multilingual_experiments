@@ -41,10 +41,22 @@ def generate_wiki(wikipath, trie, kv, enc):
             entities = {x: True for x in entities.split(":::")}
             words = nltk.word_tokenize(sent)
             X_list, cand_list, gram_list = feature(words, trie, kv, enc)
+            outX = None
+            outy = None
             for X, cands in zip(X_list, cand_list):
                 y = [cand in entities for cand in cands]
                 if y:
-                    yield X, np.array(y)
+                    if outX is None:
+                        outX = X
+                    else:
+                        for i in range(4):
+                            outX[i] = np.append(outX[i], X[i], axis=0)
+                    if outy is None:
+                        outy = y
+                    else:
+                        outy += y
+            if True in outy:
+                yield outX, np.array(outy)
 
 
 def generate_test(indices, sentvecs, labels, entvecs):

@@ -32,9 +32,11 @@ def run():
     model = build_model()
     model.fit_generator(generate_wiki(
         "../../../entity_types_scripts/ELdata_wiki.txt", *pdata),
-                        steps_per_epoch=100,
-                        epochs=1000,
-                        callbacks=callbacks)
+                        steps_per_epoch=10,
+                        epochs=100000,
+                        callbacks=callbacks,
+                        class_weight={0: 1, 1: 100}
+    )
 
 
 if __name__ == "__main__":
