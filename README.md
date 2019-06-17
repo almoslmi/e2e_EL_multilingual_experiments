@@ -20,7 +20,7 @@ After that, you can download some data by running download_data.py:
 ```
 cd run_anyway
 pip install googledrivedownloader
-pip -r requirements.txt
+pip install -r requirements.txt
 python download_data.py
 cd modules
 ```
