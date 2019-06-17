@@ -39,6 +39,7 @@ sent>Python is an interpreted, high-level, general-purpose programming language.
 ```
 
 ```python
+threshold>0.2
 sent>Django は Apache 2 で mod python を使って、あるいは任意の WSGI 準拠のウェブサーバで動作させることができる。NginxとuWSGIでも動作が可能となっている。 Django は FastCGI サーバを起動することができ、FastCGI をサポートする任意のウェブサーバのバックエンドで使用することができる。
 
 [('Django_(web_framework)', 'Django'), ('Web_Server_Gateway_Interface', 'WSGI'), ('Web_server', 'ウェブサーバ'), ('Nginx', 'Nginx'), ('UWSGI', 'uWSGI'), ('Django_(web_framework)', 'Django'), ('FastCGI', 'FastCGI'), ('Server_(computing)', 'サーバ'), ('FastCGI', 'FastCGI'), ('Web_server', 'ウェブサーバ'), ('Front_and_back_ends', 'バックエンド')]
