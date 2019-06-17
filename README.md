@@ -45,4 +45,4 @@ sent>Django は Apache 2 で mod python を使って、あるいは任意の WSG
 [('Django_(web_framework)', 'Django'), ('Web_Server_Gateway_Interface', 'WSGI'), ('Web_server', 'ウェブサーバ'), ('Nginx', 'Nginx'), ('UWSGI', 'uWSGI'), ('Django_(web_framework)', 'Django'), ('FastCGI', 'FastCGI'), ('Server_(computing)', 'サーバ'), ('FastCGI', 'FastCGI'), ('Web_server', 'ウェブサーバ'), ('Front_and_back_ends', 'バックエンド')]
 ```
 
-The English predictor and the Japanese predictor use the same model, ```model_wiki_tmp.h5```. That's why the model is called "multilingual EL model".
+The English predictor and the Japanese predictor use the same model, ```model_wiki_tmp.h5```. That's why the model is "multilingual EL model".
