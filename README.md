@@ -10,12 +10,12 @@ And then, you also need to install laserencoder.
 
 - https://github.com/sugiyamath/laserencoder
 
-If you want to use predictor_ja.py, you need to install MeCab and neologd.
+If you want to use ```predictor_ja.py```, you need to install MeCab and neologd.
 
 - https://github.com/taku910/mecab
 - https://github.com/neologd/mecab-ipadic-neologd
 
-After that, you can download some data by running download_data.py:
+After that, you can download some data by running ```download_data.py```:
 
 ```
 cd run_anyway
@@ -25,7 +25,7 @@ python download_data.py
 cd modules
 ```
 
-Finally, you can run the predictors:
+Finally, you can run the predictor:
 
 ```
 python predictor.py  # or predictor_ja.py
@@ -40,12 +40,8 @@ sent>Python is an interpreted, high-level, general-purpose programming language.
 
 ```python
 sent>Django は Apache 2 で mod python を使って、あるいは任意の WSGI 準拠のウェブサーバで動作させることができる。NginxとuWSGIでも動作が可能となっている。 Django は FastCGI サーバを起動することができ、FastCGI をサポートする任意のウェブサーバのバックエンドで使用することができる。
-/tmp/tmplf7ubtnc
- - Tokenizer: tmplf7ubtnc in language en
- - fast BPE: processing tok
- - Encoder: bpe to I8YAA7XUHJ8QQJMK
- - Encoder: 28 sentences in 0s
+
 [('Django_(web_framework)', 'Django'), ('Web_Server_Gateway_Interface', 'WSGI'), ('Web_server', 'ウェブサーバ'), ('Nginx', 'Nginx'), ('UWSGI', 'uWSGI'), ('Django_(web_framework)', 'Django'), ('FastCGI', 'FastCGI'), ('Server_(computing)', 'サーバ'), ('FastCGI', 'FastCGI'), ('Web_server', 'ウェブサーバ'), ('Front_and_back_ends', 'バックエンド')]
 ```
 
-The English entity predictor and the Japanese entity predictor use same model, model_wiki_tmp.h5. That's why the model is called "multilingual EL model".
+The English predictor and the Japanese predictor use the same model, ```model_wiki_tmp.h5```. That's why the model is called "multilingual EL model".
