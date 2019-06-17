@@ -34,8 +34,7 @@ def run():
         "../../../entity_types_scripts/ELdata_wiki.txt", *pdata),
                         steps_per_epoch=10,
                         epochs=100000,
-                        callbacks=callbacks,
-                        class_weight={0: 1, 1: 100}
+                        callbacks=callbacks
     )
 
 
