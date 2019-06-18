@@ -68,7 +68,7 @@ def predict(model, X_list, cand_list, gram_list, ind_list, threshold=0.5):
         out.append({
             "entity": cands[index],
             "mention": grams[index],
-            "word_index": wind
+            "word_index": wind[index]
         })
     return out
 
