@@ -53,5 +53,7 @@ sent>Django は Apache 2 で mod python を使って、あるいは任意の WSG
 [{'entity': 'Django_(web_framework)', 'mention': 'Django', 'word_index': (0, 1)}, {'entity': 'Web_Server_Gateway_Interface', 'mention': 'WSGI', 'word_index': (14, 15)}, {'entity': 'Web_server', 'mention': 'ウェブサーバ', 'word_index': (17, 18)}, {'entity': 'Nginx', 'mention': 'Nginx', 'word_index': (26, 27)}, {'entity': 'UWSGI', 'mention': 'uWSGI', 'word_index': (28, 29)}, {'entity': 'Django_(web_framework)', 'mention': 'Django', 'word_index': (39, 40)}, {'entity': 'FastCGI', 'mention': 'FastCGI', 'word_index': (41, 42)}, {'entity': 'Server_(computing)', 'mention': 'サーバ', 'word_index': (42, 43)}, {'entity': 'FastCGI', 'mention': 'FastCGI', 'word_index': (50, 51)}, {'entity': 'Web_server', 'mention': 'ウェブサーバ', 'word_index': (56, 57)}, {'entity': 'Front_and_back_ends', 'mention': 'バックエンド', 'word_index': (58, 59)}]
 ```
 
+Note: ```word_index``` is not character index. It means the positions of tokenized words list.
+
 
 The English predictor and the Japanese predictor use the same model, ```model_wiki_tmp.h5```. That's why the model is multilingual.
