@@ -34,6 +34,22 @@ def encode_with_linkprob(candidates, kv):
     return out
 
 
+def encode_with_linkprob_and_windex(candidates, kv):
+    out = []
+    for candidate, prob, wind in candidates:
+        try:
+            out.append({
+                "candname": candidate,
+                "entvec": kv["ENTITY/" + candidate],
+                "linkprob": prob,
+                "begin": wind[0],
+                "end": wind[1]
+            })
+        except KeyError:
+            continue
+    return out
+
+
 if __name__ == "__main__":
     import sys
     mention = sys.argv[1]

@@ -19,6 +19,8 @@ select ll_from from langlinks where ll_title=?
 
 
 def mention2encands(mention,
+                    wbegin,
+                    wend,
                     mention_stat,
                     id2title,
                     llfile):
@@ -32,7 +34,7 @@ def mention2encands(mention,
                 out.append((target, count))
                 total += count
         for i, (target, count) in enumerate(out):
-            out[i] = (target, float(count)/float(total))
+            out[i] = (target, float(count)/float(total), (wbegin, wend))
         return out
     except KeyError:
         return None

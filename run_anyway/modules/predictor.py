@@ -20,29 +20,31 @@ def feature(words, trie, kv, enc):
     X_list = []
     cand_list = []
     gram_list = []
+    ind_list = []
     mentions = {}
     for i in range(1, 6):
-        for gram in ngram(words, i):
+        for wind, gram in zip(ngram(range(len(words)), i), ngram(words, i)):
             mention = ' '.join(list(gram))
-            candidates = cg.generate_with_linkprob(mention, trie)
-            encoded = eenc.encode_with_linkprob(candidates, kv)
+            candidates = cg.generate_with_linkprob_and_windex(
+                mention, wind[0], wind[-1], trie)
+            encoded = eenc.encode_with_linkprob_and_windex(candidates, kv)
             tmp_X2 = []
             tmp_X4 = []
             tmp_cand = []
+            tmp_ind = []
             tmp_gram = []
             for target in encoded:
                 tmp_cand.append(target["candname"])
+                tmp_ind.append((target["begin"], target["end"]))
                 tmp_X2.append(target["entvec"])
                 tmp_X4.append([target["linkprob"]])
                 tmp_gram.append(mention)
                 mentions[mention] = True
             if tmp_X2:
-                X_list.append([
-                    None, np.array(tmp_X2), None,
-                    np.array(tmp_X4)
-                ])
+                X_list.append([None, np.array(tmp_X2), None, np.array(tmp_X4)])
                 cand_list.append(tmp_cand)
                 gram_list.append(tmp_gram)
+                ind_list.append(tmp_ind)
     mentions = [x.replace("\n", " ") for x, _ in mentions.items()]
     mvecs = enc.encode('\n'.join([sent] + mentions))
     x1 = mvecs[0]
@@ -55,17 +57,21 @@ def feature(words, trie, kv, enc):
             tmp_X1.append(x1)
         X_list[i][0] = np.array(tmp_X1)
         X_list[i][2] = np.array(tmp_X3)
-    return X_list, cand_list, gram_list
+    return X_list, cand_list, gram_list, ind_list
 
 
-def predict(model, X_list, cand_list, gram_list, threshold=0.005):
+def predict(model, X_list, cand_list, gram_list, ind_list, threshold=0.5):
     out = []
-    for X, cands, grams in zip(X_list, cand_list, gram_list):
+    for X, cands, grams, wind in zip(X_list, cand_list, gram_list, ind_list):
         y_preds = [x[0] for x in model.predict(X)]
         if np.max(y_preds) < threshold:
             continue
         index = np.argmax(y_preds)
-        out.append((cands[index], grams[index]))
+        out.append({
+            "entity": cands[index],
+            "mention": grams[index],
+            "word_index": wind[index]
+        })
     return out
 
 
@@ -79,6 +85,7 @@ if __name__ == "__main__":
         threshold = float(input("threshold>"))
         sent = input("sent>")
         words = nltk.word_tokenize(sent)
-        X_list, cand_list, gram_list = feature(words, trie, kv, enc)
-        result = predict(model, X_list, cand_list, gram_list, threshold)
+        X_list, cand_list, gram_list, ind_list = feature(words, trie, kv, enc)
+        result = predict(model, X_list, cand_list, gram_list, ind_list,
+                         threshold)
         print(result)
