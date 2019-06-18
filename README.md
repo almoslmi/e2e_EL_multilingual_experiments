@@ -45,12 +45,13 @@ sent>Python is an interpreted, high-level, general-purpose programming language.
 ```python
 threshold>0.2
 sent>Django は Apache 2 で mod python を使って、あるいは任意の WSGI 準拠のウェブサーバで動作させることができる。NginxとuWSGIでも動作が可能となっている。 Django は FastCGI サーバを起動することができ、FastCGI をサポートする任意のウェブサーバのバックエンドで使用することができる。
-/tmp/tmpy9rcjfab
- - Tokenizer: tmpy9rcjfab in language en
+/tmp/tmpmgoq4zed
+ - Tokenizer: tmpmgoq4zed in language en
  - fast BPE: processing tok
- - Encoder: bpe to E54RO4XYCK303VZE
+ - Encoder: bpe to L53R8V3A79BMY6ZE
  - Encoder: 28 sentences in 0s
-[{'entity': 'Django_(web_framework)', 'mention': 'Django', 'word_index': [(0, 1), (0, 1)]}, {'entity': 'Web_Server_Gateway_Interface', 'mention': 'WSGI', 'word_index': [(14, 15)]}, {'entity': 'Web_server', 'mention': 'ウェブサーバ', 'word_index': [(17, 18)]}, {'entity': 'Nginx', 'mention': 'Nginx', 'word_index': [(26, 27)]}, {'entity': 'UWSGI', 'mention': 'uWSGI', 'word_index': [(28, 29)]}, {'entity': 'Django_(web_framework)', 'mention': 'Django', 'word_index': [(39, 40), (39, 40)]}, {'entity': 'FastCGI', 'mention': 'FastCGI', 'word_index': [(41, 42)]}, {'entity': 'Server_(computing)', 'mention': 'サーバ', 'word_index': [(42, 43), (42, 43), (42, 43), (42, 43)]}, {'entity': 'FastCGI', 'mention': 'FastCGI', 'word_index': [(50, 51)]}, {'entity': 'Web_server', 'mention': 'ウェブサーバ', 'word_index': [(56, 57)]}, {'entity': 'Front_and_back_ends', 'mention': 'バックエンド', 'word_index': [(58, 59)]}]
+[{'entity': 'Django_(web_framework)', 'mention': 'Django', 'word_index': (0, 1)}, {'entity': 'Web_Server_Gateway_Interface', 'mention': 'WSGI', 'word_index': (14, 15)}, {'entity': 'Web_server', 'mention': 'ウェブサーバ', 'word_index': (17, 18)}, {'entity': 'Nginx', 'mention': 'Nginx', 'word_index': (26, 27)}, {'entity': 'UWSGI', 'mention': 'uWSGI', 'word_index': (28, 29)}, {'entity': 'Django_(web_framework)', 'mention': 'Django', 'word_index': (39, 40)}, {'entity': 'FastCGI', 'mention': 'FastCGI', 'word_index': (41, 42)}, {'entity': 'Server_(computing)', 'mention': 'サーバ', 'word_index': (42, 43)}, {'entity': 'FastCGI', 'mention': 'FastCGI', 'word_index': (50, 51)}, {'entity': 'Web_server', 'mention': 'ウェブサーバ', 'word_index': (56, 57)}, {'entity': 'Front_and_back_ends', 'mention': 'バックエンド', 'word_index': (58, 59)}]
 ```
+
 
 The English predictor and the Japanese predictor use the same model, ```model_wiki_tmp.h5```. That's why the model is multilingual.
